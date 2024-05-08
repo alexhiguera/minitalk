@@ -6,13 +6,15 @@
 #    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:23:34 by alex              #+#    #+#              #
-#    Updated: 2024/05/08 15:26:37 by alex             ###   ########.fr        #
+#    Updated: 2024/05/08 21:42:54 by alex             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #████████████████████████████ Configuration ███████████████████████████████████#
 
-NAME			:= minishell
+NAME			:= minitalk
+SERVER			:= server
+CLIENT 			:= client
 CC				:= gcc
 CFLAGS			:= -Wall -Wextra -Werror
 
@@ -30,7 +32,10 @@ WHITE 			=	\033[0;97m
 
 #█████████████████████████████ SOURCES █████████████████████████████████████████#
 
-SRC 		:= 	server.c	client.c
+SRC_SERVER		:=	src/server.c
+SRC_CLIENT 		:= 	src/client.c
+
+SRC_LIBFT		:=	libft_2.0/libft.a
 
 #████████████████████████████ Rules ████████████████████████████████████████████#
 
@@ -38,13 +43,17 @@ all:$(NAME)
 
 $(NAME): 	$(SRC)
 				@echo "$(CYAN)Compiling $(NAME)...$(WHITE)\n"
-				@$(CC) $(CFLAGS) -o $(NAME)
+				@make re -C libft_2.0/
+				@$(CC) $(CFLAGS) $(SRC_LIBFT) $(SRC_SERVER) -o $(SERVER)
+				@$(CC) $(CFLAGS) $(SRC_LIBFT) $(SRC_CLIENT) -o $(CLIENT)
 				@echo "$(GREEN)$(NAME) compiled! 🚀$(WHITE)\n"
 
-clean:
+
+clean:	
 
 fclean: 	clean
-				@rm -rf $(NAME)
+				@rm -rf $(SERVER)
+				@rm -rf $(CLIENT)
 
 re: 		fclean all
 
