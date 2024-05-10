@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alex <alex@student.42.fr>                  +#+  +:+       +#+         #
+#    By: columbux <columbux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:23:34 by alex              #+#    #+#              #
-#    Updated: 2024/05/08 21:42:54 by alex             ###   ########.fr        #
+#    Updated: 2024/05/09 17:38:13 by columbux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,26 +32,28 @@ WHITE 			=	\033[0;97m
 
 #█████████████████████████████ SOURCES █████████████████████████████████████████#
 
-SRC_SERVER		:=	src/server.c
-SRC_CLIENT 		:= 	src/client.c
+SRC.SERVER		:=	src/server.c
+SRC.CLIENT 		:= 	src/client.c
 
-SRC_LIBFT		:=	libft_2.0/libft.a
+SRC.LIBFT		:=	libft_2.0/libft.a
 
 #████████████████████████████ Rules ████████████████████████████████████████████#
 
-all:$(NAME)
+all:		$(NAME)
 
-$(NAME): 	$(SRC)
+$(NAME): 	$(SRC.SERVER) $(SRC.CLIENT)
 				@echo "$(CYAN)Compiling $(NAME)...$(WHITE)\n"
-				@make re -C libft_2.0/
-				@$(CC) $(CFLAGS) $(SRC_LIBFT) $(SRC_SERVER) -o $(SERVER)
-				@$(CC) $(CFLAGS) $(SRC_LIBFT) $(SRC_CLIENT) -o $(CLIENT)
+				@make re -C libft_2.0/ -s
+				@$(CC) $(CFLAGS) $(SRC.LIBFT) $(SRC.SERVER) -o $(SERVER)
+				@$(CC) $(CFLAGS) $(SRC.LIBFT) $(SRC.CLIENT) -o $(CLIENT)
 				@echo "$(GREEN)$(NAME) compiled! 🚀$(WHITE)\n"
 
 
-clean:	
+clean:
+				@make -C libft_2/ clean
 
 fclean: 	clean
+				@make -C libft_2/ fclean
 				@rm -rf $(SERVER)
 				@rm -rf $(CLIENT)
 
