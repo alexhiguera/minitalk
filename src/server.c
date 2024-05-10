@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: columbux <columbux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:30:28 by alex              #+#    #+#             */
-/*   Updated: 2024/05/08 16:45:58 by alex             ###   ########.fr       */
+/*   Updated: 2024/05/09 17:04:45 by columbux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include "libft_2.0/src/libft.h"
+#include "minitalk.h"
 
 void	mt_btoi(int signal)
 {
@@ -33,7 +32,7 @@ void	mt_btoi(int signal)
 
 int	main(int argc, char **argv)
 {
-	pid_t	pid;
+	int	pid;
 
 	pid = getpid();
 	if (argc == 1)
